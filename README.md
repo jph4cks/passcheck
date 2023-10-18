@@ -1,4 +1,4 @@
-# Overview
+# Passcheck
 This utility is designed to remove unnecessary passwords from wordlists. During password attacks, understanding the password policy of the target system is crucial. This tool can filter out passwords from a wordlist that do not conform to the target's password policy, making the attack more efficient.
 
 # Features
@@ -23,6 +23,7 @@ cd path/to/project
 Run the script from the command line as follows:
 ```bash
 python script_name.py -i input_wordlist.txt [-o output_wordlist.txt] [-l 8] [-sn 1] [-nn 1] [-v]
+```
 Options:
 -i, --input: Input wordlist file (Required).
 -o, --output: Output wordlist file (Optional).
