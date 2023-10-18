@@ -16,13 +16,14 @@ This utility is designed to remove unnecessary passwords from wordlists. During 
 * Clone the repository to your local machine:
 * Navigate into the project directory:
 ```bash
-git clone <repository-url>
-cd path/to/project
+cd /opt
+git clone https://github.com/japd06/passcheck
+cd /opt/passcheck
 ```
 # Usage
 Run the script from the command line as follows:
 ```bash
-python script_name.py -i input_wordlist.txt [-o output_wordlist.txt] [-l 8] [-sn 1] [-nn 1] [-v]
+python3 passcheck.py -i input_wordlist.txt [-o output_wordlist.txt] [-l 8] [-sn 1] [-nn 1] [-v]
 ```
 Options:
 -i, --input: Input wordlist file (Required).
@@ -34,7 +35,7 @@ Options:
 ```
 To see all options and their explanations, run:
 ```bash
-python script_name.py -h
+python passcheck.py -h
 ```
 # Contribution
 Feel free to fork the repository and submit pull requests. For major changes, please open an issue to discuss what you would like to change.
