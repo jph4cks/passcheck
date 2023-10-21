@@ -32,11 +32,18 @@ def check_line(line, min_length, max_length, min_specials, min_numbers, min_uc, 
 def filter_wordlist(input_file, output_file, min_length, max_length, min_specials, min_numbers, min_uc, min_lc, verbose):
     input_lines = 0
     output_lines = 0
+    error_lines = 0  # Counter for lines that could not be decoded
 
-    with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
-        for line in infile:
+    with open(input_file, 'rb') as infile, open(output_file, 'w') as outfile:  # Note that the input file is opened in binary mode
+        for binary_line in infile:
             input_lines += 1
-            line = line.strip()
+            try:
+                line = binary_line.decode('utf-8').strip()  # Try decoding each line from binary to UTF-8
+            except UnicodeDecodeError:
+                error_lines += 1  # Increment error line counter
+                if verbose:
+                    print(f"Skipped line {input_lines} due to UnicodeDecodeError")
+                continue  # Skip this line and move to the next
 
             if check_line(line, min_length, max_length, min_specials, min_numbers, min_uc, min_lc):
                 output_lines += 1
@@ -46,6 +53,9 @@ def filter_wordlist(input_file, output_file, min_length, max_length, min_special
 
     print(f"Total lines in the original file: {input_lines}")
     print(f"Total lines in the output file: {output_lines}")
+    if error_lines > 0:
+        print(f"Skipped lines due to decoding errors: {error_lines}")
+
 
 # Main function to handle command-line arguments and call other functions
 def main():
